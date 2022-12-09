@@ -9,7 +9,8 @@ const store = createStore({
             ask: [],
             jobs: [],
             user: {},
-            item: [],
+            item: {},
+            loadingStatus: false,
         }
     },
     getters: {
@@ -21,6 +22,9 @@ const store = createStore({
         },
         fetchedItem(state) {
             return state.item;
+        },
+        fetchedLoadingStatus(state) {
+            return state.loadingStatus;
         }
     },
     mutations,

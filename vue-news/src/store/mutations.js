@@ -13,5 +13,11 @@ export default {
     },
     SET_ITEM(state, item) {
         state.item = item;
-    }
+    },
+    START_SPINNER(state) {
+        state.loadingStatus = true;
+    },
+    END_SPINNER(state) {
+        state.loadingStatus = false;
+    },
 }

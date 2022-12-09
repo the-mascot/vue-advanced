@@ -1,27 +1,29 @@
 <template>
   <div>
-    <p v-for="item in this.$store.state.news">
-      <a v-bind:href="item.url">
-        {{ item.title }}
-      </a>
-      <small>
-        {{ item.time_ago }} by
-<!--        <router-link v-bind:to="'/user/' + item.user">{{ item.user }}</router-link>-->
-        <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
-
-      </small>
-    </p>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
+import ListItem from "@/components/ListItem";
+
 export default {
+  components: {
+    ListItem
+  },
   created() {
-    this.$store.dispatch('FETCH_NEWS');
+    this.$emit('startSpinner');
+    setTimeout(() => {
+      this.$store.dispatch('FETCH_NEWS')
+          .then(() => {
+            console.log('fetched');
+            this.$emit('endSpinner');
+          })
+          .catch(error => console.log(error));
+    }, 3000);
   }
 }
 </script>
 
 <style scoped>
-
 </style>

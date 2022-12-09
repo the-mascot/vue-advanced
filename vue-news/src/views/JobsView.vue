@@ -1,16 +1,16 @@
 <template>
   <div>
-    <p v-for="job in this.$store.state.jobs">
-      <a :href="job.url">{{ job.domain }}</a>
-      <samll>{{ job.time_ago }}, {{ job.domain }}</samll>
-      <small>
-      </small>
-    </p>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
+import ListItem from "@/components/ListItem";
+
 export default {
+  components: {
+    ListItem
+  },
   created() {
     this.$store.dispatch('FETCH_JOBS');
   }
@@ -18,5 +18,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
